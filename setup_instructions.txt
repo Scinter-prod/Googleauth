@@ -1,0 +1,67 @@
+Setup Instructions for Modern Knowledge Graph Application
+
+1. Environment Variables Setup:
+   - Create a .env.local file in the root of your project if it doesn't exist already.
+   - Add the following environment variables to your .env.local file:
+     GOOGLE_CLIENT_ID=your_google_client_id
+     GOOGLE_CLIENT_SECRET=your_google_client_secret
+     NEXT_PUBLIC_BASE_URL=http://localhost:3000 (or your deployment URL)
+     JWT_SECRET=your_strong_jwt_secret
+     OPENAI_API_KEY=your_openai_api_key
+     LOG_LEVEL=info (or debug for more verbose logging)
+
+2. Dependencies Installation:
+   - Run `npm install` or `yarn install` to install all the necessary dependencies.
+
+3. Google OAuth Setup:
+   - Go to the Google Cloud Console (https://console.cloud.google.com/)
+   - Create a new project or select an existing one
+   - Enable the Google Drive API and Google Docs API for your project
+   - Create OAuth 2.0 credentials (Client ID and Client Secret)
+   - Set the authorized redirect URI to: http://localhost:3000/api/auth/callback/google
+   - Copy the Client ID and Client Secret to your .env.local file
+
+4. OpenAI API Key:
+   - Sign up for an OpenAI account if you haven't already
+   - Generate an API key from your OpenAI dashboard
+   - Copy the API key to your .env.local file
+
+5. JWT Secret:
+   - Generate a strong random string to use as your JWT secret
+   - You can use a command like this in your terminal: 
+     node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
+   - Copy the generated string to your .env.local file
+
+6. Logging Setup:
+   - The LOG_LEVEL environment variable is set to 'info' by default
+   - You can change it to 'debug' for more detailed logging during development
+
+7. Database Setup:
+   - This application uses Milvus as a vector database
+   - Make sure you have Milvus installed and running
+   - Update the MILVUS_HOST and MILVUS_PORT in your backend .env file if necessary
+
+8. Backend Setup:
+   - Navigate to the backend directory
+   - Run `pip install -r requirements.txt` to install Python dependencies
+   - Start the FastAPI server by running `uvicorn main:app --reload`
+
+9. Frontend Setup:
+   - In the root directory, run `npm run dev` or `yarn dev` to start the Next.js development server
+
+10. Testing the Application:
+    - Open a web browser and navigate to http://localhost:3000
+    - You should see the login page. Use Google Sign-In to authenticate
+    - After logging in, you can start creating notes and generating knowledge graphs
+
+11. Deployment:
+    - For production deployment, make sure to update the NEXT_PUBLIC_BASE_URL to your actual deployment URL
+    - Set up proper security measures, including secure transmission of environment variables
+    - Consider using a production-ready database solution for storing user data and notes
+
+Remember to never commit your .env.local file to version control. Keep your secret keys and API keys secure.
+
+If you encounter any issues during setup or runtime, check the server logs for more detailed error messages. The logging system we've implemented will help in debugging and troubleshooting.
+
+Enjoy using your Modern Knowledge Graph application!
+
