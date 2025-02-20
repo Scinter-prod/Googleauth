@@ -88,7 +88,7 @@ export function TextInput() {
 
 
   const handlePostRequest = async () => {
-    const url = 'https://135.237.165.61:8000/api/submit-text'; // Correct URL without query params
+    const url = 'https://vm.api.scinter.org/api/submit-text'; // Correct URL without query params
     const data = { text: content };
 
     try {
